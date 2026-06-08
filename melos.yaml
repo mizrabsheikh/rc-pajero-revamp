@@ -1,0 +1,5 @@
+name: project_rc_car  
+packages:
+  - apps/controller_mobile_app
+  - apps/flutterino
+  - packages/**

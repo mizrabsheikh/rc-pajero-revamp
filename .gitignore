@@ -1,0 +1,68 @@
+﻿# --- Monorepo / Root ---
+.env
+.env.*
+node_modules/
+dist/
+build/
+.pnpm-debug.log*
+
+# --- Flutter / Dart ---
+# https://github.com/github/gitignore/blob/main/Dart.gitignore
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+# Melos generated files
+melos_*.log
+.melos/
+
+# --- Android ---
+**/android/app/src/main/res/generated
+**/android/app/debug
+**/android/local.properties
+**/android/key.properties
+**/android/flutter_bundle
+**/android/*_bundle
+**/*.jks
+**/*.keystore
+**/*.apk
+**/*.aab
+
+# --- iOS ---
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Flutter/App.framework
+**/ios/Flutter/App.struct
+**/ios/Pods/
+**/ios/.res
+**/ios/.last_build_id
+**/*.xcworkspace/
+**/*.xcuserdata/
+**/Podfile.lock
+
+# --- Node.js / JavaScript ---
+# https://github.com/github/gitignore/blob/main/Node.gitignore
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Dependency directories
+jspm_packages/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# --- IDEs / OS ---
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+*.task

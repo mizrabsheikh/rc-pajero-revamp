@@ -1,0 +1,7 @@
+name: project_rc_car
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+dev_dependencies:
+  melos: ^6.0.0
+dependencies:
+  model_viewer_plus: ^1.10.0
