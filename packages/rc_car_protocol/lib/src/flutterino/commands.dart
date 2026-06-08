@@ -1,10 +1,7 @@
-// Core protocol command IDs and constants for the Flutterino protocol.
-
 class ProtocolConstants {
   static const int startByte = 0xAA;
   static const int endByte = 0xBB;
 
-  // Message Types
   static const int typeCommand = 0x01;
   static const int typeResponse = 0x02;
   static const int typeTelemetry = 0x03;

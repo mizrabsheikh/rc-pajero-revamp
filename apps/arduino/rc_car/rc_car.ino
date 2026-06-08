@@ -1,55 +1,23 @@
 #include <Servo.h>
+#include "../../../packages/rc_car_protocol/firmware/rc_car_protocol.h"
 
 // ── Framing ──────────────────────────────────────────────────
-static const uint8_t START_BYTE = 0xFF;
-static const uint8_t TEL_START = 0xFE;
 
 // ── Pin map ──────────────────────────────────────────────────
-static const uint8_t PIN_FOG_LIGHT = 6;
-static const uint8_t PIN_HEAD_LIGHT = 3;
-static const uint8_t PIN_IND_RIGHT = 9;
-static const uint8_t PIN_STEERING = 4;
-static const uint8_t PIN_IND_LEFT = 7;
-static const uint8_t PIN_REVERSE_LIGHT = 8;
-static const uint8_t PIN_BRAKE_LIGHT = 5;
-static const uint8_t PIN_MOTOR_IN1 = 10;
-static const uint8_t PIN_MOTOR_EN = 11;
-static const uint8_t PIN_MOTOR_IN2 = 12;
-static const uint8_t PIN_BATTERY_VOLTAGE = A1;
 
 
 
 // ── Command buffer indices ────────────────────────────────────
-static const uint8_t CMD_BUF_LEN = 16;
-static const uint8_t IDX_HEAD_LIGHT = 0;
-static const uint8_t IDX_FOG_LIGHT = 1;
-static const uint8_t IDX_IND_RIGHT = 2;
-static const uint8_t IDX_IND_LEFT = 3;
-static const uint8_t IDX_REVERSE_LIGHT = 4;
-static const uint8_t IDX_BRAKE_LIGHT = 5;
-static const uint8_t IDX_HORN = 6;
-static const uint8_t IDX_STEERING = 7;
-static const uint8_t IDX_MOTOR_EN = 8;
-static const uint8_t IDX_MOTOR_IN1 = 9;
-static const uint8_t IDX_MOTOR_IN2 = 10;
 
 // ── Telemetry buffer indices ──────────────────────────────────
-static const uint8_t TEL_BUF_LEN = 8;  // match kTelemBufLen in Dart
-static const uint8_t TEL_IDX_BATTERY_H = 0;
-static const uint8_t TEL_IDX_BATTERY_L = 1;
 
 // ── RPM / Speed ───────────────────────────────────────────────
-static const uint8_t PIN_RPM_SENSOR = 2;         // must be interrupt-capable
 static const float WHEEL_CIRCUMFERENCE_M = 0.08 ; // meters, adjust to your wheel
 static volatile uint16_t _pulseCount = 0;
 static uint16_t _rpm = 0;
 static float _speedMs = 0.0f;
 static uint32_t _lastRpmCalc = 0;
 static const uint16_t RPM_CALC_INTERVAL = 1000;  // ms
-static const uint8_t TEL_IDX_RPM_H = 2;
-static const uint8_t TEL_IDX_RPM_L = 3;
-static const uint8_t TEL_IDX_SPEED_H = 4;  // speed in cm/s to avoid float
-static const uint8_t TEL_IDX_SPEED_L = 5;
 
 
 // ── Globals ──────────────────────────────────────────────────
@@ -69,8 +37,7 @@ void onRpmPulse() {
 
 // ── Setup ────────────────────────────────────────────────────
 void setup() {
-  // Serial.begin(9600); 
-  Serial.begin(115200);
+  Serial.begin(SERIAL_BAUD_RATE);
   steeringServo.attach(PIN_STEERING);
 
   pinMode(PIN_FOG_LIGHT, OUTPUT);

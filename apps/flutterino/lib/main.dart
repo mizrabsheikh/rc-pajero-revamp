@@ -11,7 +11,7 @@ import 'dart:typed_data';
 
 import 'package:battery_plus/battery_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_webrtc/flutter_webrtc.dart';
+import 'package:rc_car_protocol/rc_car_protocol.dart';
 
 import 'debug_config.dart';
 import 'services/device_actions_service.dart';
@@ -22,11 +22,6 @@ import 'services/webrtc_service.dart';
 
 // ── Constants ────────────────────────────────────────────────
 const String kServerUrl = 'http://192.168.10.159:3000';
-const int kBaudRate = 115200;
-const int kStartByte = 0xFF;
-const int kTelemStartByte = 0xFE;
-const int kCmdBufLen = 16;
-const int kTelemBufLen = 8;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -79,10 +74,10 @@ class _BridgePageState extends State<BridgePage> {
     _deviceActionsService = DeviceActionsService();
     _serverUrlController = TextEditingController(text: kServerUrl);
     _serialService = SerialService(
-      baudRate: kBaudRate,
-      startByte: kStartByte,
-      telemBufferLength: kTelemBufLen,
-      telStartByte: kTelemStartByte,
+      baudRate: ArduinoProtocol.baudRate,
+      startByte: ArduinoProtocol.commandStartByte,
+      telemBufferLength: ArduinoProtocol.telemetryBufferLength,
+      telStartByte: ArduinoProtocol.telemetryStartByte,
     );
     _initializeServices();
     _requestAndStartForeground();

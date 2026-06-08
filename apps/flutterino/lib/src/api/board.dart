@@ -1,9 +1,8 @@
 import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
+import 'package:rc_car_protocol/rc_car_protocol.dart';
 
-import '../protocol/commands.dart';
-import '../protocol/packet.dart';
 import 'connection_status.dart';
 
 class PrioritizedCommand implements Comparable<PrioritizedCommand> {

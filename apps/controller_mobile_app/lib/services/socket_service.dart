@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:rc_car_protocol/rc_car_protocol.dart';
 // ignore: library_prefixes
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'webrtc_service.dart';
-import 'arduino_protocol.dart';
 import 'telemetry_data.dart';
 
 class SocketService {

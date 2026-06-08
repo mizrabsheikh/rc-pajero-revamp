@@ -672,6 +672,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
+  rc_car_protocol:
+    dependency: "direct main"
+    description:
+      path: "../../packages/rc_car_protocol"
+      relative: true
+    source: path
+    version: "0.1.0"
   shared_preferences:
     dependency: transitive
     description:
